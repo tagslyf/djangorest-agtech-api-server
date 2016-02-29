@@ -17,6 +17,6 @@ This README would normally document whatever steps are necessary to get your app
 * \c apiserverdb
 * CREATE EXTENSION postgis;
 * CREATE EXTENSION adminpack;
+* ALTER USER username SUPERUSER;
 * Grant all privileges on database apiserverdb to USERNAME;
 * \q
-
