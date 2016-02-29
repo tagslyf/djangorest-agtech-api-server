@@ -2,28 +2,21 @@
 
 This README would normally document whatever steps are necessary to get your application up and running.
 
-### What is this repository for? ###
-
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* [APIV2 Repo](https://bitbucket.org/agtechlabs/api-server/)
 
 ### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* git clone https://USERNAME@bitbucket.org/agtechlabs/api-server.git
+* Install pip and virtualenv
+* virtualenv ENV_NAME
+* pip install -r requirements.txt
 
-### Contribution guidelines ###
+### Postges ###
+* createdb apiserverdb;
+* psql
+* \c apiserverdb
+* CREATE EXTENSION postgis;
+* CREATE EXTENSION adminpack;
+* Grant all privileges on database apiserverdb to USERNAME;
+* \q
 
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
