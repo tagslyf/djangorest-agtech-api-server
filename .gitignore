@@ -1,6 +1,7 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*.pyc
 
 # C extensions
 *.so
@@ -59,6 +60,7 @@ target/
 /manage.py
 
 000*.py
+development.py
 Rakefile
 
 # don't put the virtualenv in there
