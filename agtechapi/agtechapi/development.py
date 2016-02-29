@@ -58,7 +58,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_gis',
     'djcelery',
-    'corsheaders'
+    'corsheaders',
+    'userprofile'
 ]
 
 MIDDLEWARE_CLASSES = [
