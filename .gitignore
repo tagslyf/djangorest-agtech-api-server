@@ -58,6 +58,7 @@ docs/_build/
 target/
 
 /manage.py
+/agtechapi/development.py
 
 000*.py
 development.py
