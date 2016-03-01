@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import url, include
 from rest_framework import routers
-from userprofile import views
+from account import views
 
 router = routers.DefaultRouter()
 router.register(r'profiles', views.ProfileViewSet)

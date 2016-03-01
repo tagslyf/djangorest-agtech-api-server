@@ -47,7 +47,7 @@ LOCALIZATION_OPTIONS = (
     ('en_ZA', 'English / Zimbabwe'),
 )
 
-class UserProfile(models.Model):
+class Profile(models.Model):
 	id	     = models.AutoField(primary_key=True)
 	user     = models.OneToOneField(User,related_name="owned_accounts", help_text="User who owned the account")
 	account_name = models.CharField(max_length=50, help_text="Display name for the account")
@@ -69,8 +69,4 @@ class UserProfile(models.Model):
 	created_by = models.ForeignKey(User,related_name="account_created", help_text="User who created the account", null=True, blank=True)
 	date_created = models.DateTimeField(auto_now=False, auto_now_add=True, help_text="Date the record was created")
 	date_last_edited = models.DateTimeField(auto_now=True, auto_now_add=False, null=True, blank=True, help_text="Date the record was last edited.")
-	pass
-
-	class Meta:
-		db_table = "userprofile"
 
