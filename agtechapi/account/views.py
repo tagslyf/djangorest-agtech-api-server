@@ -15,6 +15,7 @@ import django_filters
 
 class AccountFilter(django_filters.FilterSet):
     account_name = django_filters.CharFilter(name="account_name", lookup_type="icontains")
+    first_name   = django_filters.CharFilter(name="first_name", lookup_type="icontains")
 
     class Meta:
         model  = Profile
@@ -22,7 +23,7 @@ class AccountFilter(django_filters.FilterSet):
 
 class ProfileViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet):
     """
-    List all profile, or create a new profile.
+    List all user, or create a new profile.
     """
     
     model = Profile
@@ -31,4 +32,4 @@ class ProfileViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.
     queryset = Profile.objects.all()
     filter_class    = AccountFilter
     filter_backends = (filters.OrderingFilter, filters.DjangoFilterBackend)
-    filter_fields = ('account_name',)
+    filter_fields = ('id','account_name','firstname','lastname')
