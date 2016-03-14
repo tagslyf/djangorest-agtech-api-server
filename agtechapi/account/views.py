@@ -32,3 +32,13 @@ class ProfileViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.
     filter_class    = AccountFilter
     filter_backends = (filters.OrderingFilter, filters.DjangoFilterBackend)
     filter_fields = ('id','account_name','firstname','lastname')
+
+class CustomersViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet):
+    """
+    List all customers, or create a new customer.
+    """
+
+    model = User
+    permission_classes = [IsAuthenticated, IsAdminUser,]
+    serializer_class   = CustomerSerializer
+    queryset = User.objects.filter(groups__name="Customer")
