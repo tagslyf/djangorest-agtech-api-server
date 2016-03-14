@@ -7,7 +7,6 @@ from rest_framework.decorators import detail_route, list_route
 from rest_framework.exceptions import ParseError
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework_gis.filters import InBBoxFilter
 from account.serializers import *
 from account.models import *
 # Create your views here.
