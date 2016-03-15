@@ -34,9 +34,10 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
     	model  = Profile
     	fields = ('id','account_name','user',
-    			   'email','firstname','lastname','billing_company','phone_number','fax',
+    			   'email','firstname','lastname','phone_number','fax',
     			   'street_address1','street_address2','state',
-    			   'city','zipcode','localization','tz_offset','country'
+    			   'city','zipcode','localization','tz_offset','country','billing_company','billing_contact',
+    			   'billing_invoice_email','billing_phone','billing_company'
     			 )
 
     def validate(self, data):

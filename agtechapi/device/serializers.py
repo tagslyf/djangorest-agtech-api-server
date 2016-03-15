@@ -10,10 +10,10 @@ class FirmwareSerializer(serializers.ModelSerializer):
 		fields = ('version','firmware_path')
 
 class ManufactureDeviceSerializer(serializers.ModelSerializer):
-	device_sn   = serializers.UUIDField(required=False,default=uuid.uuid4)
+	device_sn   = serializers.UUIDField(required=False,default=uuid.uuid4,read_only=True)
 	device_type = serializers.ChoiceField(required=True,choices=DEVICE_TYPE_OPTIONS)
-	firmware    = serializers.PrimaryKeyRelatedField(required=False,queryset=Firmware.objects.all())
+	#firmware    = serializers.PrimaryKeyRelatedField(required=False,queryset=Firmware.objects.all())
 
 	class Meta:
 		model  = Manufacture
-		fields = ('id','device_sn','device_type','pcba_srl','banner_srl','nimberlink_srl','enclosure_srl','radio_srl','qa_test_number','manufactured_by','manufactured_status','firmware','manufactured_by','date_created','date_last_edited')
+		fields = ('id','device_sn','device_type','pcba_srl','banner_srl','nimberlink_srl','enclosure_srl','radio_srl','qa_test_number','manufactured_by','date_created','date_last_edited')

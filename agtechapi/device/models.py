@@ -33,9 +33,9 @@ class Manufacture(models.Model):
     enclosure_srl = models.CharField(max_length=30,null=True, blank=True,help_text="Enclosure Serial Number of the Manufactured device.")
     radio_srl = models.CharField(max_length=30,null=True, blank=True,help_text="Radio Serial Number of the Manufactured device.")
     qa_test_number = models.CharField(max_length=30,null=True, blank=True,help_text="QA Test Number of the Manufactured device.")
-    firmware = models.ForeignKey(Firmware,related_name="firmware_version", default="1", null=True, blank=True,help_text="Current Firmware Version of the device.")
+    #firmware = models.ForeignKey(Firmware,related_name="firmware_version", default="1", null=True, blank=True,help_text="Current Firmware Version of the device.")
     manufactured_by  = models.ForeignKey(User,related_name="created_devices", default="1", help_text="User who manufactured the device.")
-    manufactured_status = models.CharField(max_length=1, db_index=True, default="M", choices=MANUFACTURE_STATUS, help_text="Device manufactured status.")       
+    #manufactured_status = models.CharField(max_length=1, db_index=True, default="M", choices=MANUFACTURE_STATUS, help_text="Device manufactured status.")       
     date_created     = models.DateTimeField(auto_now_add=True, help_text="Date the record was created")
     date_last_edited = models.DateTimeField(auto_now=True, auto_now_add=False, null=True, blank=True, help_text="Date the record was last edited.")
 
