@@ -42,3 +42,38 @@ class CustomersViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixin
     permission_classes = [IsAuthenticated, IsAdminUser,]
     serializer_class   = CustomerSerializer
     queryset = User.objects.filter(groups__name="Customer")
+
+class AuthUser(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
+    """
+    Login Authentication
+    """
+    model               = User
+    permission_classes  = [IsAuthenticated, IsAdminUser,]
+    serializer_class    = AuthSerializer
+    queryset            = User.objects.all()
+
+    def post(self, request, *args, **kwargs):
+        data = JSONParser().parse(request)
+        response = {}
+
+        if all(x in data for x in ['username','password']):
+            username = data['username']
+            password = data['password']
+
+            try:
+                auth = User.objects.get(username=username)
+                if auth.check_password(password):
+                    serializer       = AuthSerializer(auth)
+                    status           = 200
+                    response['data'] = serializer.data
+                else:
+                    status            = 400
+                    response['error'] = 'Invalid Username and/or Password'
+            except User.DoesNotExist:
+                status = 400
+                response['error'] = 'User does not exist'
+        else:
+            status = 400
+            response['error'] = 'Incorrect Parameter/s'
+
+        return Response(response, status=status)

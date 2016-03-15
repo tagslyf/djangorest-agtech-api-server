@@ -78,3 +78,9 @@ class CustomerSerializer(serializers.ModelSerializer):
 			Profile.objects.create(user=user,**profile_data)
 
 		return user
+
+class AuthSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = User
+		exclude = ('password',)
