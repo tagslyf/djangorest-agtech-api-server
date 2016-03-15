@@ -84,3 +84,10 @@ class AuthSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = User
 		exclude = ('password',)
+
+class UserSerializer(serializers.ModelSerializer):
+    email 		 = serializers.EmailField(required=True)
+
+    class Meta:
+		model = User
+		exclude = ('password','user_permissions')

@@ -23,6 +23,7 @@ router = routers.DefaultRouter()
 router.register(r'profiles', account.ProfileViewSet)
 router.register(r'customer', account.CustomersViewSet)
 router.register(r'auth', account.AuthUser)
+router.register(r'user', account.UserViewSet)
 
 router.register(r'manufacturer', manufacturer.ManufactureViewSet)
 router.register(r'devices', manufacturer.DeviceRegistrationViewSet)

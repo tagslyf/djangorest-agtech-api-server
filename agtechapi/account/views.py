@@ -77,3 +77,12 @@ class AuthUser(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.Generi
             response['error'] = 'Incorrect Parameter/s'
 
         return Response(response, status=status)
+
+class UserViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet):
+    """
+    List of all users. create and update user.
+    """
+    model               = User
+    permission_classes  = [IsAuthenticated, IsAdminUser,]
+    serializer_class    = UserSerializer
+    queryset            = User.objects.all()
