@@ -32,3 +32,15 @@ class ManufactureViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMixin, mix
     filter_backends  = (filters.OrderingFilter, filters.DjangoFilterBackend)
     filter_fields    = ('device_sn','device_type','pcba_srl')
 
+class DeviceRegistrationViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet):
+    """
+    List all device registered, or register a new device.
+    """
+    
+    model = Registration
+    permission_classes = [IsAuthenticated, IsAdminUser,]
+    serializer_class   = DeviceRegistrationSerializer
+    queryset           = Registration.objects.all()
+    #filter_class     = ManufactureSerializerFilter
+    #filter_backends  = (filters.OrderingFilter, filters.DjangoFilterBackend)
+    #filter_fields    = ('device_sn','device_type','pcba_srl')

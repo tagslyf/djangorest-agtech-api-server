@@ -21,8 +21,11 @@ from device import views as manufacturer
 
 router = routers.DefaultRouter()
 router.register(r'profiles', account.ProfileViewSet)
-router.register(r'manufacturer', manufacturer.ManufactureViewSet)
 router.register(r'customer', account.CustomersViewSet)
+
+router.register(r'manufacturer', manufacturer.ManufactureViewSet)
+router.register(r'devices', manufacturer.DeviceRegistrationViewSet)
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
