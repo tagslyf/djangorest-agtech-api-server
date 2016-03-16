@@ -4,7 +4,7 @@ from device.models import *
 import uuid
 
 class FirmwareSerializer(serializers.ModelSerializer):
-
+	
 	class Meta:
 		model  = Firmware
 		fields = ('version','firmware_path')

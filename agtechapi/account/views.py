@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from rest_framework.parsers import JSONParser
 from rest_framework import filters
 from rest_framework import viewsets, mixins, filters, status
 from rest_framework.generics import CreateAPIView, GenericAPIView, ListAPIView
