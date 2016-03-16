@@ -18,13 +18,16 @@ from django.conf.urls import url, include
 from rest_framework import routers
 from account import views as account
 from device import views as manufacturer
+from group import views as group
+from permission import views as permission
 
 router = routers.DefaultRouter()
 router.register(r'profiles', account.ProfileViewSet)
 router.register(r'customer', account.CustomersViewSet)
 router.register(r'auth', account.AuthUser)
 router.register(r'user', account.UserViewSet)
-
+router.register(r'groups', group.GroupViewSet)
+router.register(r'permissions', permission.PermissionViewSet)
 router.register(r'manufacturer', manufacturer.ManufactureViewSet)
 router.register(r'devices', manufacturer.DeviceRegistrationViewSet)
 

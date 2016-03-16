@@ -48,7 +48,7 @@ LOCALIZATION_OPTIONS = (
 )
 
 class Profile(models.Model):
-    id	     = models.AutoField(primary_key=True)
+    id       = models.AutoField(primary_key=True)
     user     = models.OneToOneField(User,related_name="profile", help_text="User who owned the account.")
     account_name  = models.CharField(max_length=50, help_text="Account name that will be displayed on the Dashboard.")
     reseller_name = models.CharField(max_length=50, help_text="Reseller name that will be displayed on the Dashboard.")
@@ -65,7 +65,7 @@ class Profile(models.Model):
     country = models.CharField(max_length=3, default="USA", help_text="Country for billing address.")
     localization = models.CharField(max_length=10, db_index=True, default="en_IE", choices=LOCALIZATION_OPTIONS, help_text="Default Language / Localization")
     tz_offset = models.CharField(max_length=20, db_index=True, default="+08:00", choices=TZ_OFFSET_OPTIONS, help_text="Default Timezone Offset")
-	#Billing Information
+    #Billing Information
     billing_contact = models.CharField(max_length=20, null=True, blank=True, help_text="Contact Number for billing statement.")
     billing_invoice_email = models.EmailField(max_length=100, help_text="Email address for the invoices.")
     billing_phone = models.CharField(max_length=20, null=True, blank=True, help_text="Phone number of the grower point of contact.")
