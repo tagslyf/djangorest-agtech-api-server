@@ -5,7 +5,7 @@ class GroupSerializer(serializers.ModelSerializer):
     """
     Create, update and retreive group.
     """
-    name        = serializers.CharField(required=False, max_length=100)
+    name        = serializers.CharField(required=True, max_length=100)
     permissions = serializers.PrimaryKeyRelatedField(required=False,many=True,queryset=Permission.objects.all())
 
     # Validation if group name already exist
