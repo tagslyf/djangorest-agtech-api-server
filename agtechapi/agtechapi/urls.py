@@ -21,9 +21,9 @@ from device import views as manufacturer
 
 router = routers.DefaultRouter()
 router.register(r'profiles', account.ProfileViewSet)
-router.register(r'customer', account.CustomersViewSet)
-router.register(r'auth', account.AuthUser)
-router.register(r'user', account.UserViewSet)
+router.register(r'customer', account.CustomersViewSet, base_name='customer')
+router.register(r'auth', account.AuthUser, base_name='auth')
+router.register(r'user', account.UserViewSet, base_name='user')
 
 router.register(r'manufacturer', manufacturer.ManufactureViewSet)
 router.register(r'devices', manufacturer.DeviceRegistrationViewSet)
