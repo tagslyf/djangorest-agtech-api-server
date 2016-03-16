@@ -5,6 +5,7 @@ from rest_framework.generics import CreateAPIView, GenericAPIView, ListAPIView
 from rest_framework.permissions import IsAdminUser, AllowAny, IsAuthenticated
 from rest_framework.decorators import detail_route, list_route
 from rest_framework.exceptions import ParseError
+from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from account.serializers import *
@@ -63,9 +64,13 @@ class AuthUser(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.Generi
             try:
                 auth = User.objects.get(username=username)
                 if auth.check_password(password):
-                    serializer       = AuthSerializer(auth)
-                    status           = 200
-                    response['data'] = serializer.data
+                    if auth.is_active:
+                        serializer       = AuthSerializer(auth)
+                        status           = 200
+                        response['data'] = serializer.data
+                    else:
+                        status = 400
+                        response['error'] = 'User is inactive.'
                 else:
                     status            = 400
                     response['error'] = 'Invalid Username and/or Password'
