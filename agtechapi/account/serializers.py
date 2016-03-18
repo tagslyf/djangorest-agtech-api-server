@@ -87,7 +87,21 @@ class AuthSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     email        = serializers.EmailField(required=True)
+    password     = serializers.CharField(required=True,max_length=20)
 
     class Meta:
         model = User
-        exclude = ('password','user_permissions')
+        exclude = ('password','is_superuser','user_permissions')
+
+    def create(self, validated_data):
+        groups = validated_data.pop('groups');
+        
+        user = User.objects.create(**validated_data)
+        user.set_password(validated_data['password'])
+        user.save()
+
+        if groups:
+            for g in groups:
+                user.groups.add(g)
+
+        return user
