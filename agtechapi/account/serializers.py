@@ -87,11 +87,11 @@ class AuthSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     email        = serializers.EmailField(required=True)
-    password     = serializers.CharField(required=True,max_length=20)
 
     class Meta:
         model = User
-        exclude = ('password','is_superuser','user_permissions')
+        exclude = ('is_superuser','user_permissions','last_login','date_joined')
+        extra_kwargs = {'password': {'write_only': True , 'required': False}}
 
     def create(self, validated_data):
         groups = validated_data.pop('groups');
