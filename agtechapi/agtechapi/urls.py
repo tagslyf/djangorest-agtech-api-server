@@ -30,6 +30,7 @@ router.register(r'groups', group.GroupViewSet)
 router.register(r'permissions', permission.PermissionViewSet)
 router.register(r'manufacturer', manufacturer.ManufactureViewSet)
 router.register(r'devices', manufacturer.DeviceRegistrationViewSet)
+router.register(r'account/devices', manufacturer.AccountDeviceViewSet,base_name='account_devices')
 
 
 urlpatterns = [
