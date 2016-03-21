@@ -8,16 +8,9 @@ from rest_framework.exceptions import ParseError
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from device.serializers import *
+from device.filters import *
 from device.models import *
 # Create your views here
-import django_filters
-
-class ManufactureSerializerFilter(django_filters.FilterSet):
-    device_sn    = django_filters.CharFilter(name="device_sn", lookup_type="icontains")
-
-    class Meta:
-        model  = Manufacture
-        fields = ['device_sn','device_type','pcba_srl']
 
 class ManufactureViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet):
     """
@@ -52,6 +45,12 @@ class DeviceRegistrationViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMix
     permission_classes = [IsAuthenticated, IsAdminUser,]
     serializer_class   = DeviceRegistrationSerializer
     queryset           = Registration.objects.all()
-    #filter_class     = ManufactureSerializerFilter
-    #filter_backends  = (filters.OrderingFilter, filters.DjangoFilterBackend)
-    #filter_fields    = ('device_sn','device_type','pcba_srl')
+    filter_class       = DeviceRegistrationFilter
+    filter_backends    = (filters.OrderingFilter, filters.DjangoFilterBackend)
+    filter_fields      = ('device_sn')
+
+class AccountDeviceViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin,viewsets.GenericViewSet):
+    model = User
+    permission_classes = [IsAuthenticated, IsAdminUser,]
+    serializer_class   = AccountDeviceSerializer
+    queryset           = User.objects.all()
