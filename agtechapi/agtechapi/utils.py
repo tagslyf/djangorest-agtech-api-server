@@ -9,7 +9,7 @@ def custom_exception_handler(exc, context):
     # Now add the HTTP status code to the response.
     if response is not None:
     	if response.status_code != 200:
-    		response.data['error']  = dict((k) for k in response.data.items())
-    		[response.data.pop(k) for k in response.data if k != 'error']
+    		response.data['error']  = response.data['detail'] if 'detail' in response.data else dict((k) for k in response.data.items())
+    		response.data.pop('detail') if 'detail' in response.data else [response.data.pop(k) for k in response.data if k != 'error']
 
     return response
