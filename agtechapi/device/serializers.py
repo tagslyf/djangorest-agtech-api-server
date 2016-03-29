@@ -16,10 +16,11 @@ class ManufactureDeviceSerializer(serializers.ModelSerializer):
 	
 	class Meta:
 		model  = Manufacture
-		fields = ('id','device_sn','device_type','pcba_srl','banner_srl','nimberlink_srl','enclosure_srl','radio_srl','qa_test_number','manufactured_by','date_created','date_last_edited')
+		fields = ('id','device_sn','device_type','pcba_srl','banner_srl','nimberlink_srl','enclosure_srl','radio_srl','qa_test_number','manufactured_status','manufactured_by','date_created','date_last_edited')
 
 class DeviceRegistrationSerializer(serializers.ModelSerializer):
 	account    = serializers.PrimaryKeyRelatedField(required=True,queryset=User.objects.filter(groups__name="Customer"))
+	device_sn  = serializers.PrimaryKeyRelatedField(required=True,queryset=Manufacture.objects.exclude(device_sn__in=Registration.objects.filter(status='A').values_list('device_sn', flat=True)))
 
 	class Meta:
 		model  = Registration
