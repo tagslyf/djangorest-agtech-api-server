@@ -17,6 +17,10 @@ djcelery.setup_loader()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+import json
+jf = open('/etc/config/secrets.json')
+SECRETS = json.load(jf)
+
 BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 CELERY_TASK_SERIALIZER   = 'json'
@@ -106,7 +110,7 @@ DATABASES = {
         'USER': SECRETS['db']['default']['username'],
         'PASSWORD': SECRETS['db']['default']['password'],
         'HOST': SECRETS['db']['default']['hostname'],
-        'PORT': '5438',
+        'PORT': SECRETS['db']['default']['port'],
     }
 }
 
