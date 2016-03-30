@@ -7,7 +7,7 @@ class FirmwareSerializer(serializers.ModelSerializer):
 	
 	class Meta:
 		model  = Firmware
-		fields = ('version','firmware_path')
+		fields = ('id','version','firmware_path')
 
 class ManufactureDeviceSerializer(serializers.ModelSerializer):
 	device_sn   = serializers.UUIDField(required=False,default=uuid.uuid4,read_only=True)
