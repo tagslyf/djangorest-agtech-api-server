@@ -11,11 +11,15 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import json
 import djcelery
 djcelery.setup_loader()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+jf = open('/etc/config/secrets.json')
+SECRETS = json.load(jf)
 
 BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
@@ -56,7 +60,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_gis',
     'djcelery',
-    'corsheaders'
+    'corsheaders',
+    'account',
+    'device',
+    'group',
+    'permission'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -96,16 +104,14 @@ WSGI_APPLICATION = 'agtechapi.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'agtechapi',
-        'USER': 'raphaeljtorres',
-        'PASSWORD': 'password123',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': SECRETS['db']['default']['dbname'],
+        'USER': SECRETS['db']['default']['username'],
+        'PASSWORD': SECRETS['db']['default']['password'],
+        'HOST': SECRETS['db']['default']['hostname'],
+        'PORT': SECRETS['db']['default']['port'],
     }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
@@ -142,4 +148,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
+STATIC_ROOT = '/var/www/api.portal.com/static/'
 STATIC_URL = '/static/'
+MEDIA_ROOT = '/var/www/api-server/agtechapi/firmware/'

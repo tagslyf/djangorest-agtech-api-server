@@ -26,15 +26,17 @@ router.register(r'profiles', account.ProfileViewSet)
 router.register(r'customer', account.CustomersViewSet, base_name='customer')
 router.register(r'auth', account.AuthUser, base_name='auth')
 router.register(r'user', account.UserViewSet, base_name='user')
-router.register(r'groups', group.GroupViewSet)
-router.register(r'permissions', permission.PermissionViewSet)
-router.register(r'manufacturer', manufacturer.ManufactureViewSet)
-router.register(r'devices', manufacturer.DeviceRegistrationViewSet)
-router.register(r'account/devices', manufacturer.AccountDeviceViewSet,base_name='account_devices')
+router.register(r'groups', group.GroupViewSet, base_name='groups')
+router.register(r'permissions', permission.PermissionViewSet, base_name='permissions')
+router.register(r'manufacturer', manufacturer.ManufactureViewSet, base_name='manufacturer')
+router.register(r'devices', manufacturer.DeviceRegistrationViewSet, base_name='devices')
+router.register(r'firmwares', manufacturer.FirmwareViewSet, base_name="firmwares")
+router.register(r'account/devices', manufacturer.AccountDeviceViewSet, base_name='account_devices')
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
     #url(r'^api/docs/', include('rest_framework_swagger.urls')),
 ]
