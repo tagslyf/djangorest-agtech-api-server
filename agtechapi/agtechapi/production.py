@@ -80,6 +80,11 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'agtechapi.urls'
 
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'agtechapi.utils.custom_exception_handler',
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
+}
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
