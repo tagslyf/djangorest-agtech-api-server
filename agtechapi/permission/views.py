@@ -1,6 +1,7 @@
 import django_filters
 from django.shortcuts import render
 from django.contrib.auth.models import Permission
+from django.contrib.contenttypes.models import ContentType
 from rest_framework import viewsets, mixins, filters, status
 from rest_framework.permissions import IsAdminUser, AllowAny, IsAuthenticated
 from permission.serializers import *
@@ -8,7 +9,7 @@ from permission.serializers import *
 # Create your views here.
 class PermissionViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet):
     """
-    API endpoint that allows groups to be viewed or edited.
+    API endpoint that allows permissions to be viewed or edited.
     """
     # queryset = Group.objects.all()
     # serializer_class = GroupSerializer
@@ -16,3 +17,12 @@ class PermissionViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixi
     permission_classes  = [IsAuthenticated, IsAdminUser,]
     serializer_class    = PermissionSerializer
     queryset            = Permission.objects.all()
+
+class ContentTypeViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
+	"""
+	API endpoint that allows content type to be viewed.
+	"""
+	model 				= ContentType
+	contenttype_classes = [IsAuthenticated, IsAdminUser,]
+	serializer_class    = ContentTypeSerializer
+	queryset            = ContentType.objects.all()
