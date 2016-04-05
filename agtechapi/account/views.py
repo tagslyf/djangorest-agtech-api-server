@@ -29,18 +29,15 @@ class ProfileViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.
     filter_backends    = (filters.OrderingFilter, filters.DjangoFilterBackend)
     filter_fields      = ('id','account_name','firstname','lastname','user')
 
-    def get_queryset(self, pk):
+    def retrieve(self, request, pk=None):
         try:
-            return Profile.objects.get(user=pk)
+            account = Profile.objects.get(user=pk)
+            serializer = ProfileSerializer(account)
+            response   = {}
+            response   = serializer.data
+            return Response(response,status=status.HTTP_200_OK)
         except Profile.DoesNotExist:
             raise Http404
-
-    def retrieve(self, request, pk=None):
-        account = self.get_queryset(pk)
-        serializer = ProfileSerializer(account)
-        response   = {}
-        response   = serializer.data
-        return Response(response,status=status.HTTP_200_OK)
 
 class CustomersViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet):
     """
