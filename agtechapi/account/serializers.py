@@ -3,7 +3,6 @@ from rest_framework import serializers
 from account.models import *
 import json
 
-
 class GroupSerializer(serializers.ModelSerializer):
     """
     GroupSerializer - used to retrieve , create and update group.

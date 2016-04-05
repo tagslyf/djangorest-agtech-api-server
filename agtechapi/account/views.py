@@ -9,31 +9,38 @@ from rest_framework.exceptions import ParseError
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.http import Http404
 from account.serializers import *
+from account.filters import *
 from account.models import *
 # Create your views here.
 import django_filters
-
-class AccountFilter(django_filters.FilterSet):
-    account_name = django_filters.CharFilter(name="account_name", lookup_type="icontains")
-    first_name   = django_filters.CharFilter(name="first_name", lookup_type="icontains")
-
-    class Meta:
-        model  = Profile
-        fields = ['account_name','firstname']
 
 class ProfileViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet):
     """
     List all user, or create a new profile.
     """
     
-    model = Profile
+    model              = Profile
     permission_classes = [IsAuthenticated, IsAdminUser,]
-    serializer_class = ProfileSerializer
-    queryset = Profile.objects.all()
-    filter_class    = AccountFilter
-    filter_backends = (filters.OrderingFilter, filters.DjangoFilterBackend)
-    filter_fields = ('id','account_name','firstname','lastname')
+    serializer_class   = ProfileSerializer
+    queryset           = Profile.objects.all()
+    filter_class       = ProfileFilter
+    filter_backends    = (filters.OrderingFilter, filters.DjangoFilterBackend)
+    filter_fields      = ('id','account_name','firstname','lastname','user')
+
+    def get_queryset(self, pk):
+        try:
+            return Profile.objects.get(user=pk)
+        except Profile.DoesNotExist:
+            raise Http404
+
+    def retrieve(self, request, pk=None):
+        account = self.get_queryset(pk)
+        serializer = ProfileSerializer(account)
+        response   = {}
+        response   = serializer.data
+        return Response(response,status=status.HTTP_200_OK)
 
 class CustomersViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet):
     """
