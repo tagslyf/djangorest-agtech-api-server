@@ -78,6 +78,38 @@ class CustomerSerializer(serializers.ModelSerializer):
 
         return user
 
+    def update(self, instance, validated_data):
+        instance.username = validated_data.get('username', instance.username)
+        instance.save()
+
+        profile_data = validated_data.pop('profile')
+        profile      = instance.profile
+        
+        profile.account_name     = profile_data.get('account_name',profile.account_name)
+        profile.reseller_name    = profile_data.get('reseller_name',profile.reseller_name)
+        profile.firstname        = profile_data.get('firstname',profile.firstname)
+        profile.lastname         = profile_data.get('lastname',profile.lastname)
+        profile.company_name     = profile_data.get('company_name',profile.company_name)
+        profile.email_onboarding = profile_data.get('email_onboarding',profile.email_onboarding)
+        profile.email            = profile_data.get('email',profile.email)
+        profile.phone_number     = profile_data.get('phone_number',profile.phone_number)
+        profile.fax              = profile_data.get('fax',profile.fax)
+        profile.street_address1  = profile_data.get('street_address1',profile.street_address1)
+        profile.street_address2  = profile_data.get('street_address2',profile.street_address2)
+        profile.state            = profile_data.get('state',profile.state)
+        profile.city             = profile_data.get('city',profile.city)
+        profile.zipcode          = profile_data.get('zipcode',profile.zipcode)
+        profile.localization     = profile_data.get('localization',profile.localization)
+        profile.tz_offset        = profile_data.get('tz_offset',profile.tz_offset)
+        profile.country          = profile_data.get('country',profile.country)
+        profile.billing_company  = profile_data.get('billing_company',profile.billing_company)
+        profile.billing_contact  = profile_data.get('billing_contact',profile.billing_contact)
+        profile.billing_invoice_email = profile_data.get('billing_invoice_email',profile.billing_invoice_email)
+        profile.billing_phone         = profile_data.get('billing_phone',profile.billing_phone)
+        profile.save()
+
+        return instance
+
 class AuthSerializer(serializers.ModelSerializer):
 
     class Meta:
