@@ -23,7 +23,7 @@ class GroupSerializer(serializers.ModelSerializer):
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-    account_name = serializers.CharField(required=True,max_length=50, help_text="Display name for the account")
+    account_name = serializers.CharField(required=False,max_length=50, help_text="Display name for the account")
     firstname    = serializers.CharField(max_length=30, help_text="First name for billing statement.")
     lastname     = serializers.CharField(max_length=30, help_text="Last name for billing statement.")
     email        = serializers.EmailField(max_length=100, help_text="Email for billing statement.")

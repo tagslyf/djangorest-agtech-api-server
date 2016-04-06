@@ -50,7 +50,7 @@ LOCALIZATION_OPTIONS = (
 class Profile(models.Model):
     id                  = models.AutoField(primary_key=True)
     user                = models.OneToOneField(User,related_name="profile", help_text="User who owned the account.")
-    account_name        = models.CharField(max_length=50, help_text="Account name that will be displayed on the Dashboard.")
+    account_name        = models.CharField(max_length=50, null=True, blank=True,help_text="Account name that will be displayed on the Dashboard.")
     reseller_name       = models.CharField(max_length=50, null=True, blank=True, help_text="Reseller name that will be displayed on the Dashboard.")
     company_name        = models.CharField(max_length=50, help_text="Company of the account holder")
     email_onboarding    = models.CharField(max_length=50, null=True, blank=True, help_text="Email for Onboarding Communication")
