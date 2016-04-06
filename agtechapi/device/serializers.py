@@ -12,7 +12,7 @@ class FirmwareSerializer(serializers.ModelSerializer):
 class ManufactureDeviceSerializer(serializers.ModelSerializer):
 	device_sn   = serializers.UUIDField(required=False,read_only=True)
 	device_type = serializers.ChoiceField(required=True,choices=DEVICE_TYPE_OPTIONS)
-	manufactured_by = serializers.PrimaryKeyRelatedField(required=True,queryset=User.objects.filter(groups__name="Manufacturer"))
+	manufactured_by = serializers.PrimaryKeyRelatedField(required=False,queryset=User.objects.filter(groups__name="Manufacturer"))
 	
 	class Meta:
 		model  = Manufacture
