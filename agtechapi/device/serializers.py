@@ -10,13 +10,17 @@ class FirmwareSerializer(serializers.ModelSerializer):
 		fields = ('id','version','firmware_path')
 
 class ManufactureDeviceSerializer(serializers.ModelSerializer):
-	device_sn   = serializers.UUIDField(required=False,default=uuid.uuid4,read_only=True)
+	device_sn   = serializers.UUIDField(required=False,read_only=True)
 	device_type = serializers.ChoiceField(required=True,choices=DEVICE_TYPE_OPTIONS)
 	manufactured_by = serializers.PrimaryKeyRelatedField(required=True,queryset=User.objects.filter(groups__name="Manufacturer"))
 	
 	class Meta:
 		model  = Manufacture
 		fields = ('id','device_sn','device_type','pcba_srl','banner_srl','nimberlink_srl','enclosure_srl','radio_srl','qa_test_number','manufactured_status','manufactured_by','date_created','date_last_edited')
+	def create(self, validated_data):
+		validated_data['device_sn'] = uuid.uuid4()
+		return Manufacture.objects.create(**validated_data)
+
 
 class DeviceRegistrationSerializer(serializers.ModelSerializer):
 	account    = serializers.PrimaryKeyRelatedField(required=True,queryset=User.objects.filter(groups__name="Customer"))
