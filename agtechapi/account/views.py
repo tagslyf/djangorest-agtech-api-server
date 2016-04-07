@@ -31,14 +31,30 @@ class ProfileViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.
 
     def retrieve(self, request, pk=None):
         try:
-            account = Profile.objects.get(user=pk)
+            account    = Profile.objects.get(user=pk)
             serializer = ProfileSerializer(account)
             response   = {}
             response   = serializer.data
             return Response(response,status=status.HTTP_200_OK)
         except Profile.DoesNotExist:
             raise Http404
-
+    
+    def update(self, request, pk, format=None):
+        try:
+            account      = Profile.objects.get(user=pk)
+            # profile      = request.data 
+            # profile_data = profile.pop('profile') 
+            serializer   = ProfileSerializer(account, data=request.data, context={'request': request})
+            response     = {}
+            if serializer.is_valid():
+                serializer.save() 
+                #return updated profile details
+                return Response(serializer.data,status=status.HTTP_200_OK) 
+            #return error if data didn't passed the serialization.  
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Profile.DoesNotExist:
+            raise Http404
+    
 class CustomersViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet):
     """
     List all customers, or create a new customer.
