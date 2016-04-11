@@ -51,8 +51,13 @@ class GroupSerializer(serializers.ModelSerializer):
 
         if(validated_data.get('access')):
             permission_data  = validated_data.pop('access')
-            group_permission = instance.access
-            group_permission.permission = permission_data.get('permission',group_permission.permission)
-            group_permission.save()
+            try:
+                group_permission = instance.access
+                group_permission.permission = permission_data.get('permission',group_permission.permission)
+                group_permission.save()
+            except:
+                group_permission = AclGroupPermission.objects.create(group=instance)
+                group_permission.permission = permission_data.get('permission')
+                group_permission.save()
 
         return instance
