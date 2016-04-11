@@ -111,10 +111,12 @@ class CustomerSerializer(serializers.ModelSerializer):
         return instance
 
 class AuthSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(required=True,max_length=50)
+    password = serializers.CharField(required=True,max_length=100)
 
     class Meta:
         model = User
-        exclude = ('password',)
+        exclude = ('password','user_permissions',)
 
 class UserSerializer(serializers.ModelSerializer):
     email        = serializers.EmailField(required=True)

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth import authenticate
 from rest_framework.parsers import JSONParser
 from rest_framework import filters
 from rest_framework import viewsets, mixins, filters, status
@@ -75,33 +76,41 @@ class AuthUser(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.Generi
     def post(self, request, *args, **kwargs):
         data = JSONParser().parse(request)
         response = {}
-
-        if all(x in data for x in ['username','password']):
+        serializer = AuthSerializer(data=data)
+        
+        if serializer.is_valid():
             username = data['username']
             password = data['password']
 
-            try:
-                auth = User.objects.get(username=username)
-                if auth.check_password(password):
-                    if auth.is_active:
-                        serializer       = AuthSerializer(auth)
-                        status           = 200
-                        response['data'] = serializer.data
-                    else:
-                        status = 400
-                        response['error'] = 'User is inactive.'
+            auth = authenticate(username=username, password=password)
+            
+            if auth:
+                if auth.is_active:
+                    serializer = AuthSerializer(auth)
+                    return Response(serializer.data,status=status.HTTP_200_OK)
                 else:
-                    status            = 400
-                    response['error'] = 'Invalid Username and/or Password'
-            except User.DoesNotExist:
-                status = 400
-                response['error'] = 'User does not exist'
-        else:
-            status = 400
-            response['error'] = 'Incorrect Parameter/s'
+                    response['error'] = 'User is inactive.'
+                    return Response(response,status=status.HTTP_400_BAD_REQUEST)
+            else:
+                try:
+                    auth = User.objects.get(email=username)
+                    if auth.check_password(password):
+                        if auth.is_active:
+                            serializer = AuthSerializer(auth)
+                            return Response(serializer.data,status=status.HTTP_200_OK)
+                        else:
+                           response['error'] = 'User is inactive.'
+                           return Response(response,status=status.HTTP_400_BAD_REQUEST)
+                    else:
+                        response['error'] = 'Invalid Username and/or Password'
+                        return Response(response,status=status.HTTP_400_BAD_REQUEST)
+                except User.DoesNotExist:
+                    response['error'] = 'User does not exist'
+                    return Response(response,status=status.HTTP_400_BAD_REQUEST)
 
-        return Response(response, status=status)
-
+        response['error'] = serializer.errors 
+        return Response(response,status=status.HTTP_400_BAD_REQUEST)
+     
 class UserViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet):
     """
     List of all users. create and update user.
