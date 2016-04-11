@@ -1,6 +1,30 @@
 from django.contrib.auth.models import Permission
+from django.contrib.auth.models import User, Group
 from django.contrib.contenttypes.models import ContentType
 from rest_framework import serializers
+from permission.models import *
+
+class ACLPermissionSerializer(serializers.ModelSerializer):
+    visible = serializers.BooleanField(required=False,default=False)
+
+    class Meta:
+        model  = AclPermission
+        fields = ('id', 'perm_name','perm_key','perm_description','visible')
+
+
+class ACLGroupPermissionSerializer(serializers.ModelSerializer):
+    permission = serializers.PrimaryKeyRelatedField(many=True , queryset=AclPermission.objects.all())
+
+    class Meta:
+        model  = AclGroupPermission
+        fields = ('group','permission')
+
+class ACLUserPermissionSerializer(serializers.ModelSerializer):
+    permission = serializers.PrimaryKeyRelatedField(many=True , queryset=AclPermission.objects.all())
+
+    class Meta:
+        model  = AclUserPermission
+        fields = ('user','permission')
 
 class PermissionSerializer(serializers.ModelSerializer):
     """

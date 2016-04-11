@@ -42,8 +42,6 @@ class ProfileViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.
     def update(self, request, pk, format=None):
         try:
             account      = Profile.objects.get(user=pk)
-            # profile      = request.data 
-            # profile_data = profile.pop('profile') 
             serializer   = ProfileSerializer(account, data=request.data, context={'request': request})
             response     = {}
             if serializer.is_valid():
