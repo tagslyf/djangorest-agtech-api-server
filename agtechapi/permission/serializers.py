@@ -9,7 +9,7 @@ class ACLPermissionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model  = AclPermission
-        fields = ('id', 'perm_name','perm_key','perm_description','visible')
+        fields = ('id', 'perm_name','perm_key','perm_icon','perm_description','visible')
 
 
 class ACLGroupPermissionSerializer(serializers.ModelSerializer):

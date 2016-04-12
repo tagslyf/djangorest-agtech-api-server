@@ -2,8 +2,9 @@
   {
     "model": "permission.aclpermission",
     "fields": {
-      "perm_name": "Account",
-      "perm_key" : "account.show",
+      "perm_name" : "Account",
+      "perm_key"  : "account",
+      "perm_icon" : "account" ,
       "perm_description" : "Permission that show all account.",
       "visible" : 1,
       "date_created" : "2016-04-12 00:00:00"
@@ -14,6 +15,7 @@
     "fields": {
       "perm_name": "Create Account",
       "perm_key" : "account.create",
+      "perm_icon" : "account" ,
       "perm_description" : "Permission that allow the user/group to create an account.",
       "visible" : 0,
       "date_created" : "2016-04-12 00:00:00"
@@ -24,6 +26,7 @@
     "fields": {
       "perm_name": "Update Account",
       "perm_key" : "account.update",
+      "perm_icon" : "account",
       "perm_description" : "Permission that allow the user/group to update an account.",
       "visible" : 0,
       "date_created" : "2016-04-12 00:00:00"
@@ -32,8 +35,9 @@
   {
     "model": "permission.aclpermission",
     "fields": {
-      "perm_name": "Manufacturers",
-      "perm_key" : "manufacturer.show",
+      "perm_name" : "Manufacturer",
+      "perm_key"  : "manufacturer",
+      "perm_icon" : "user2",
       "perm_description" : "Permission that show all manufactured device.",
       "visible" : 1,
       "date_created" : "2016-04-12 00:00:00"
@@ -44,6 +48,7 @@
     "fields": {
       "perm_name": "Create Manufactured Device",
       "perm_key" : "manufacturer.create",
+      "perm_icon" : "user2",
       "perm_description" : "Permission that allow user/group to create manufactured device.",
       "visible" : 0,
       "date_created" : "2016-04-12 00:00:00"
@@ -54,6 +59,7 @@
     "fields": {
       "perm_name": "Update Manufactured Device",
       "perm_key" : "manufacturer.update",
+      "perm_icon" : "user2",
       "perm_description" : "Permission that allow the user/group to update a device.",
       "visible" : 0,
       "date_created" : "2016-04-12 00:00:00"
@@ -62,8 +68,9 @@
   {
     "model": "permission.aclpermission",
     "fields": {
-      "perm_name": "Customers",
-      "perm_key" : "customer.show",
+      "perm_name": "Customer",
+      "perm_key" : "customer",
+      "perm_icon" : "addpeople",
       "perm_description" : "Permission that show all customer.",
       "visible" : 1,
       "date_created" : "2016-04-12 00:00:00"
@@ -74,6 +81,7 @@
     "fields": {
       "perm_name": "Create Customer",
       "perm_key" : "customer.create",
+      "perm_icon" : "addpeople",
       "perm_description" : "Permission that allow user/group to create a customer.",
       "visible" : 0,
       "date_created" : "2016-04-12 00:00:00"
@@ -82,8 +90,9 @@
   {
     "model": "permission.aclpermission",
     "fields": {
-      "perm_name": "Update Customer",
-      "perm_key" : "customer.update",
+      "perm_name" : "Update Customer",
+      "perm_key"  : "customer.update",
+      "perm_icon" : "addpeople",
       "perm_description" : "Permission that allow the user/group to update a customer.",
       "visible" : 0,
       "date_created" : "2016-04-12 00:00:00"
@@ -92,8 +101,9 @@
   {
     "model": "permission.aclpermission",
     "fields": {
-      "perm_name": "Groups",
-      "perm_key" : "group.show",
+      "perm_name": "Group",
+      "perm_key" : "group",
+      "perm_icon" : "settings",
       "perm_description" : "Permission that show all groups.",
       "visible" : 1,
       "date_created" : "2016-04-12 00:00:00"
@@ -104,6 +114,7 @@
     "fields": {
       "perm_name": "Create Group",
       "perm_key" : "group.create",
+      "perm_icon" : "settings",
       "perm_description" : "Permission that allow user/group to create a group.",
       "visible" : 0,
       "date_created" : "2016-04-12 00:00:00"
@@ -114,6 +125,7 @@
     "fields": {
       "perm_name": "Update Group",
       "perm_key" : "group.update",
+      "perm_icon" : "settings",
       "perm_description" : "Permission that allow the user/group to update a groups.",
       "visible" : 0,
       "date_created" : "2016-04-12 00:00:00"
@@ -122,8 +134,9 @@
     {
     "model": "permission.aclpermission",
     "fields": {
-      "perm_name": "Permissions",
-      "perm_key" : "permission.show",
+      "perm_name": "Permission",
+      "perm_key" : "permission",
+      "perm_icon" : "lock2",
       "perm_description" : "Permission that show all permissions.",
       "visible" : 1,
       "date_created" : "2016-04-12 00:00:00"
@@ -134,6 +147,7 @@
     "fields": {
       "perm_name": "Create Permission",
       "perm_key" : "permission.create",
+      "perm_icon" : "lock2",
       "perm_description" : "Permission that allow user/group to create a permission.",
       "visible" : 0,
       "date_created" : "2016-04-12 00:00:00"
@@ -144,6 +158,7 @@
     "fields": {
       "perm_name": "Update Permission",
       "perm_key" : "permission.update",
+      "perm_icon" : "lock2",
       "perm_description" : "Permission that allow the user/group to update a permission.",
       "visible" : 0,
       "date_created" : "2016-04-12 00:00:00"
