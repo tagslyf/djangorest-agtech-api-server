@@ -19,6 +19,7 @@ from rest_framework import routers
 from account import views as account
 from device import views as manufacturer
 from group import views as group
+from country import views as country
 from permission import views as permission
 
 router = routers.DefaultRouter()
@@ -27,6 +28,8 @@ router.register(r'customer', account.CustomersViewSet, base_name='customer')
 router.register(r'auth', account.AuthUser, base_name='auth')
 router.register(r'user', account.UserViewSet, base_name='user')
 router.register(r'groups', group.GroupViewSet, base_name='groups')
+router.register(r'state', country.StateViewSet, base_name='state')
+router.register(r'country', country.CountryViewSet, base_name='country')
 router.register(r'permissions', permission.PermissionViewSet, base_name='permissions')
 router.register(r'grouppermissions', permission.GroupPermissionViewSet, base_name='group_permissions')
 router.register(r'contenttypes', permission.ContentTypeViewSet, base_name='contenttype')
