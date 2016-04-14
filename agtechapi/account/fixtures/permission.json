@@ -25,7 +25,7 @@
     "model": "permission.aclpermission",
     "fields": {
       "perm_name": "Update Account",
-      "perm_key" : "account.update",
+      "perm_key" : "account.edit",
       "perm_icon" : "account",
       "perm_description" : "Permission that allow the user/group to update an account.",
       "visible" : 0,
@@ -58,7 +58,7 @@
     "model": "permission.aclpermission",
     "fields": {
       "perm_name": "Update Manufactured Device",
-      "perm_key" : "manufacturer.update",
+      "perm_key" : "manufacturer.edit",
       "perm_icon" : "user2",
       "perm_description" : "Permission that allow the user/group to update a device.",
       "visible" : 0,
@@ -91,7 +91,7 @@
     "model": "permission.aclpermission",
     "fields": {
       "perm_name" : "Update Customer",
-      "perm_key"  : "customer.update",
+      "perm_key"  : "customer.edit",
       "perm_icon" : "addpeople",
       "perm_description" : "Permission that allow the user/group to update a customer.",
       "visible" : 0,
@@ -124,7 +124,7 @@
     "model": "permission.aclpermission",
     "fields": {
       "perm_name": "Update Group",
-      "perm_key" : "group.update",
+      "perm_key" : "group.edit",
       "perm_icon" : "settings",
       "perm_description" : "Permission that allow the user/group to update a groups.",
       "visible" : 0,
@@ -157,7 +157,7 @@
     "model": "permission.aclpermission",
     "fields": {
       "perm_name": "Update Permission",
-      "perm_key" : "permission.update",
+      "perm_key" : "permission.edit",
       "perm_icon" : "lock2",
       "perm_description" : "Permission that allow the user/group to update a permission.",
       "visible" : 0,
