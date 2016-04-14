@@ -64,7 +64,8 @@ INSTALLED_APPS = [
     'account',
     'device',
     'group',
-    'permission'
+    'permission',
+    'country'
 ]
 
 MIDDLEWARE_CLASSES = [
