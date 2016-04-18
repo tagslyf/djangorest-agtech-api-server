@@ -119,3 +119,13 @@ class UserViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.Lis
     permission_classes  = [IsAuthenticated, IsAdminUser,]
     serializer_class    = UserSerializer
     queryset            = User.objects.all()
+
+class DealersViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet):
+    """
+    List all customers, or create a new customer.
+    """
+
+    model = User
+    permission_classes = [IsAuthenticated, IsAdminUser,]
+    serializer_class   = DealersSerializer
+    queryset = User.objects.filter(groups__name="Dealer")

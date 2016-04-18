@@ -149,3 +149,11 @@ class UserSerializer(serializers.ModelSerializer):
                 user.groups.add(g)
 
         return user
+
+class DealersSerializer(serializers.ModelSerializer):
+    groups   = serializers.PrimaryKeyRelatedField(required=False,many=True,queryset=Group.objects.filter(name="Dealer"),default=Group.objects.filter(name="Dealer"))
+    profile  = ProfileSerializer(required=False)
+        
+    class Meta:
+        model  = User
+        fields = ('id', 'username','groups','profile')
