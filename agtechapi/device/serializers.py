@@ -28,11 +28,12 @@ class DeviceRegistrationSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model  = Registration
-		fields = ('account','device_sn','battery_status','radio_signal_status','cell_signal_status','memory_orig_size','memory_available_size','internal_temp_status','external_temp_status','accelerometer_status','charging_status','registration_type','registered_ip','status','date_created','date_last_edited')
+		fields = ('account','device_sn','battery_status','radio_signal_status','cell_signal_status','memory_orig_size','memory_available_size','internal_temp_status','external_temp_status','accelerometer_status','charging_status','registration_type','registered_ip','status','dealer','date_created','date_last_edited')
 
 	def to_representation(self,obj):
 		return {
 			'account_id'     : obj.account.id,
+			'dealer_id'      : obj.dealer.id if obj.dealer is not None else None,
 			'device_sn'      : obj.device_sn.device_sn,
 			'device_type'    : dict(DEVICE_TYPE_OPTIONS)[obj.device_sn.device_type],
 			'battery_status' : obj.battery_status,

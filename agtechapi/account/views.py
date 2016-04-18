@@ -62,7 +62,9 @@ class CustomersViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixin
     model = User
     permission_classes = [IsAuthenticated, IsAdminUser,]
     serializer_class   = CustomerSerializer
-    queryset = User.objects.filter(groups__name="Customer")
+    queryset           = User.objects.filter(groups__name="Customer")
+    filter_class       = CustomerFilter
+    filter_backends    = (filters.OrderingFilter, filters.DjangoFilterBackend)
 
 class AuthUser(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
     """
