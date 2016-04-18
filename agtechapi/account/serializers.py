@@ -113,21 +113,22 @@ class CustomerSerializer(serializers.ModelSerializer):
 class AuthSerializer(serializers.ModelSerializer):
     username = serializers.CharField(required=True,max_length=50)
     password = serializers.CharField(required=True,max_length=100)
+    groups   = serializers.PrimaryKeyRelatedField(required=False,queryset=Group.objects.all())
 
     class Meta:
         model = User
-        exclude = ('password','user_permissions',)
+        exclude = ('password','user_permissions','groups')
 
 
-    # def to_representation(self,obj):
-    #     return {
-    #         'id'         : obj.id,
-    #         'username'   : obj.username,
-    #         'first_name' : obj.first_name,
-    #         'last_name'  : obj.last_name,
-    #         'email'      : obj.email,
-    #         'groups'     : obj.groups.values()
-    #     }
+    def to_representation(self,obj):
+        return {
+            'id'         : obj.id,
+            'username'   : obj.username,
+            'first_name' : obj.first_name,
+            'last_name'  : obj.last_name,
+            'email'      : obj.email,
+            'groups'     : obj.groups.values()
+        }
 
 class UserSerializer(serializers.ModelSerializer):
     email        = serializers.EmailField(required=True)

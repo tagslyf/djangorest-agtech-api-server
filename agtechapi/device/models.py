@@ -72,6 +72,7 @@ class Registration(models.Model):
     registration_type     = models.CharField(max_length=1, db_index=True, default="B", choices=REGISTER_TYPE_OPTIONS, help_text="Action that triggers registration - B - on Boot (default), R - on Request, M - on Manual Registration, E - on Edit of Configurations")
     registered_ip         = models.GenericIPAddressField(null=True, blank=True, help_text="IP address of registered transmitter.")
     status                = models.CharField(max_length=1, db_index=True, default='A', choices=STATUS_OPTIONS, help_text="Active (default) / Inactive / Deleted")
+    dealer                = models.ForeignKey(User,related_name="dealer_account", help_text="Dealer who assigns the device.", null=True, blank=True)
     date_created          = models.DateTimeField(auto_now=False, auto_now_add=True, help_text="Date the record was created")
     date_last_edited      = models.DateTimeField(auto_now=True, auto_now_add=False, null=True, blank=True, help_text="Date the record was last edited.")
     
