@@ -16,7 +16,7 @@ class ManufactureDeviceSerializer(serializers.ModelSerializer):
 	
 	class Meta:
 		model  = Manufacture
-		fields = ('id','device_sn','device_type','pcba_srl','banner_srl','nimberlink_srl','enclosure_srl','radio_srl','qa_test_number','manufactured_status','manufactured_by','date_created','date_last_edited')
+		fields = ('id','firmware','device_sn','device_type','pcba_srl','banner_srl','nimberlink_srl','enclosure_srl','radio_srl','qa_test_number','manufactured_status','manufactured_by','date_created','date_last_edited')
 	def create(self, validated_data):
 		validated_data['device_sn'] = uuid.uuid4()
 		return Manufacture.objects.create(**validated_data)
@@ -28,14 +28,13 @@ class DeviceRegistrationSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model  = Registration
-		fields = ('account','device_sn','firmware','battery_status','radio_signal_status','cell_signal_status','memory_orig_size','memory_available_size','internal_temp_status','external_temp_status','accelerometer_status','charging_status','registration_type','registered_ip','status','date_created','date_last_edited')
+		fields = ('account','device_sn','battery_status','radio_signal_status','cell_signal_status','memory_orig_size','memory_available_size','internal_temp_status','external_temp_status','accelerometer_status','charging_status','registration_type','registered_ip','status','date_created','date_last_edited')
 
 	def to_representation(self,obj):
 		return {
 			'account_id'     : obj.account.id,
 			'device_sn'      : obj.device_sn.device_sn,
 			'device_type'    : dict(DEVICE_TYPE_OPTIONS)[obj.device_sn.device_type],
-			'firmware'       : obj.firmware.version,
 			'battery_status' : obj.battery_status,
 			'radio_signal_status'   : obj.radio_signal_status,
 			'cell_signal_status'    : obj.cell_signal_status,
@@ -47,6 +46,7 @@ class DeviceRegistrationSerializer(serializers.ModelSerializer):
 			'charging_status'       : obj.charging_status,
 			'registration_type'     : dict(REGISTER_TYPE_OPTIONS)[obj.registration_type],
 			'registered_ip'         : obj.registered_ip,
+			'firmware_version'      : obj.device_sn.firmware.version,
 			'serial_numbers' : {
 				'pcba_srl'   : obj.device_sn.pcba_srl,
 				'banner_srl' : obj.device_sn.banner_srl,

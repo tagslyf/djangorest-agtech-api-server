@@ -9,11 +9,11 @@ class FirmwareAdmin(admin.ModelAdmin):
 
 class ManufactureDeviceAdmin(admin.ModelAdmin):
 	search_fields = ['device_sn',]
-	list_display = ['device_sn','device_type','date_created','date_last_edited']
+	list_display = ['device_sn','device_type','firmware','date_created','date_last_edited']
 
 class DeviceRegistationAdmin(admin.ModelAdmin):
 	search_fields = ['device_sn',]
-	list_display = ['device_sn','account','firmware','battery_status','charging_status','date_created','date_last_edited']
+	list_display = ['device_sn','account','battery_status','charging_status','date_created','date_last_edited']
 
 
 admin.site.register(Firmware, FirmwareAdmin)

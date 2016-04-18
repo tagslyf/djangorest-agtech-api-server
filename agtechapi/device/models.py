@@ -27,6 +27,16 @@ REGISTER_TYPE_OPTIONS = (
     ('I', 'on Interval Post Execution'),
 )
 
+class Firmware(models.Model):
+    id            = models.AutoField(primary_key=True)
+    version       = models.CharField(max_length=30, unique=True, help_text="Firmware version. Ex. v1.0b, v2.0")
+    firmware_path = models.FileField(upload_to='firmware', null=True, blank=True)
+    date_created  = models.DateTimeField(auto_now=False, auto_now_add=True, help_text="Date the record was created")
+    date_last_edited = models.DateTimeField(auto_now=True, auto_now_add=False, null=True, blank=True, help_text="Date the record was last edited.")
+
+    def __unicode__(self):
+        return u'%s' % (self.version)
+
 class Manufacture(models.Model):
     id               = models.AutoField(primary_key=True)
     device_sn        = models.CharField(max_length=80, unique=True, help_text="Serial number, by default uuid4")
@@ -39,27 +49,17 @@ class Manufacture(models.Model):
     qa_test_number   = models.CharField(max_length=30,null=True, blank=True,help_text="QA Test Number of the Manufactured device.")
     manufactured_by  = models.ForeignKey(User,related_name="created_devices", default="1", help_text="User who manufactured the device.")
     manufactured_status = models.CharField(max_length=1, db_index=True, default="M", null=True, blank=True,choices=MANUFACTURE_STATUS, help_text="Device manufactured status.")       
+    firmware         = models.ForeignKey(Firmware,to_field="version",related_name="device_firmware", help_text="Current firmware version of the device.")
     date_created     = models.DateTimeField(auto_now_add=True, help_text="Date the record was created")
     date_last_edited = models.DateTimeField(auto_now=True, auto_now_add=False, null=True, blank=True, help_text="Date the record was last edited.")
 
     def __unicode__(self):
         return u'%s' % (self.device_sn)
 
-class Firmware(models.Model):
-    id            = models.AutoField(primary_key=True)
-    version       = models.CharField(max_length=30, unique=True, help_text="Firmware version. Ex. v1.0b, v2.0")
-    firmware_path = models.FileField(upload_to='firmware', null=True, blank=True)
-    date_created  = models.DateTimeField(auto_now=False, auto_now_add=True, help_text="Date the record was created")
-    date_last_edited = models.DateTimeField(auto_now=True, auto_now_add=False, null=True, blank=True, help_text="Date the record was last edited.")
-
-    def __unicode__(self):
-        return u'%s' % (self.version)
-
 class Registration(models.Model):
     id                    = models.AutoField(primary_key=True)
     account               = models.ForeignKey(User,related_name="device_account", help_text="Account who owns the device.")
-    device_sn             = models.OneToOneField('Manufacture', to_field="device_sn", related_name="device_manufactured", help_text="Serial Number of the device manufactured.")
-    firmware              = models.ForeignKey(Firmware,related_name="device_firmware", help_text="Current firmware version of the device.")   
+    device_sn             = models.OneToOneField('Manufacture', to_field="device_sn", related_name="device_manufactured", help_text="Serial Number of the device manufactured.")   
     battery_status        = models.FloatField(null=True, blank=True, help_text="Battery status by percentage.")
     radio_signal_status   = models.FloatField(null=True, blank=True, help_text="Radio Signal strength by percentage.")
     cell_signal_status    = models.FloatField(null=True, blank=True, help_text="Cellular Network Signal strength by percentage.")
