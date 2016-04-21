@@ -1,1 +1,570 @@
-[{"model":"country.state","fields":{"state_name":"Australian Capital Territory","state_code":"ACT","country":"14"}},{"model":"country.state","fields":{"state_name":"New South Wales","state_code":"NSW","country":"14"}},{"model":"country.state","fields":{"state_name":"Northern Territory","state_code":"NT","country":"14"}},{"model":"country.state","fields":{"state_name":"Queensland","state_code":"QLD","country":"14"}},{"model":"country.state","fields":{"state_name":"South Australia","state_code":"SA","country":"14"}},{"model":"country.state","fields":{"state_name":"Tasmania","state_code":"TAS","country":"14"}},{"model":"country.state","fields":{"state_name":"Victoria","state_code":"VIC","country":"14"}},{"model":"country.state","fields":{"state_name":"Western Australia","state_code":"WA","country":"14"}},{"model":"country.state","fields":{"state_name":"Alberta","state_code":"AB","country":"40"}},{"model":"country.state","fields":{"state_name":"British Columbia","state_code":"BC","country":"40"}},{"model":"country.state","fields":{"state_name":"Manitoba","state_code":"MB","country":"40"}},{"model":"country.state","fields":{"state_name":"New Brunswick","state_code":"NB","country":"40"}},{"model":"country.state","fields":{"state_name":"Newfoundland","state_code":"NL","country":"40"}},{"model":"country.state","fields":{"state_name":"Northwest Territories","state_code":"NT","country":"40"}},{"model":"country.state","fields":{"state_name":"Nova Scotia","state_code":"NS","country":"40"}},{"model":"country.state","fields":{"state_name":"Nunavut","state_code":"NU","country":"40"}},{"model":"country.state","fields":{"state_name":"Ontario","state_code":"ON","country":"40"}},{"model":"country.state","fields":{"state_name":"Prince Edward Island","state_code":"PE","country":"40"}},{"model":"country.state","fields":{"state_name":"Quebec","state_code":"QC","country":"40"}},{"model":"country.state","fields":{"state_name":"Saskatchewan","state_code":"SK","country":"40"}},{"model":"country.state","fields":{"state_name":"Yukon Territory","state_code":"YT","country":"40"}},{"model":"country.state","fields":{"state_name":"Alabama","state_code":"AL","country":"236"}},{"model":"country.state","fields":{"state_name":"Alaska","state_code":"AK","country":"236"}},{"model":"country.state","fields":{"state_name":"Arizona","state_code":"AZ","country":"236"}},{"model":"country.state","fields":{"state_name":"Arkansas","state_code":"AR","country":"236"}},{"model":"country.state","fields":{"state_name":"California","state_code":"CA","country":"236"}},{"model":"country.state","fields":{"state_name":"North Carolina","state_code":"NC","country":"236"}},{"model":"country.state","fields":{"state_name":"Connecticut","state_code":"CT","country":"236"}},{"model":"country.state","fields":{"state_name":"Delaware","state_code":"DE","country":"236"}},{"model":"country.state","fields":{"state_name":"District of Columbia","state_code":"DC","country":"236"}},{"model":"country.state","fields":{"state_name":"Florida","state_code":"FL","country":"236"}},{"model":"country.state","fields":{"state_name":"Georgia","state_code":"GA","country":"236"}},{"model":"country.state","fields":{"state_name":"Hawaii","state_code":"HI","country":"236"}},{"model":"country.state","fields":{"state_name":"Idaho","state_code":"ID","country":"236"}},{"model":"country.state","fields":{"state_name":"Illinois","state_code":"IL","country":"236"}},{"model":"country.state","fields":{"state_name":"Indiana","state_code":"IN","country":"236"}},{"model":"country.state","fields":{"state_name":"Iowa","state_code":"IA","country":"236"}},{"model":"country.state","fields":{"state_name":"Kansas","state_code":"KS","country":"236"}},{"model":"country.state","fields":{"state_name":"Kentucky","state_code":"KY","country":"236"}},{"model":"country.state","fields":{"state_name":"Louisiana","state_code":"LA","country":"236"}},{"model":"country.state","fields":{"state_name":"Maine","state_code":"ME","country":"236"}},{"model":"country.state","fields":{"state_name":"Maryland","state_code":"MD","country":"236"}},{"model":"country.state","fields":{"state_name":"Massachusetts","state_code":"MA","country":"236"}},{"model":"country.state","fields":{"state_name":"Michigan","state_code":"MI","country":"236"}},{"model":"country.state","fields":{"state_name":"Minnesota","state_code":"MN","country":"236"}},{"model":"country.state","fields":{"state_name":"Mississippi","state_code":"MS","country":"236"}},{"model":"country.state","fields":{"state_name":"Missouri","state_code":"MO","country":"236"}},{"model":"country.state","fields":{"state_name":"Montana","state_code":"MT","country":"236"}},{"model":"country.state","fields":{"state_name":"Nebraska","state_code":"NE","country":"236"}},{"model":"country.state","fields":{"state_name":"Nevada","state_code":"NV","country":"236"}},{"model":"country.state","fields":{"state_name":"New Hampshire","state_code":"NH","country":"236"}},{"model":"country.state","fields":{"state_name":"New Jersey","state_code":"NJ","country":"236"}},{"model":"country.state","fields":{"state_name":"New Mexico","state_code":"NM","country":"236"}},{"model":"country.state","fields":{"state_name":"New York","state_code":"NY","country":"236"}},{"model":"country.state","fields":{"state_name":"North Dakota","state_code":"ND","country":"236"}},{"model":"country.state","fields":{"state_name":"Ohio","state_code":"OH","country":"236"}},{"model":"country.state","fields":{"state_name":"Oklahoma","state_code":"OK","country":"236"}},{"model":"country.state","fields":{"state_name":"Oregon","state_code":"OR","country":"236"}},{"model":"country.state","fields":{"state_name":"Pennsylvania","state_code":"PA","country":"236"}},{"model":"country.state","fields":{"state_name":"Rhode Island","state_code":"RI","country":"236"}},{"model":"country.state","fields":{"state_name":"South Carolina","state_code":"SC","country":"236"}},{"model":"country.state","fields":{"state_name":"South Dakota","state_code":"SD","country":"236"}},{"model":"country.state","fields":{"state_name":"Tennessee","state_code":"TN","country":"236"}},{"model":"country.state","fields":{"state_name":"Texas","state_code":"TX","country":"236"}},{"model":"country.state","fields":{"state_name":"Utah","state_code":"UT","country":"236"}},{"model":"country.state","fields":{"state_name":"Vermont","state_code":"VT","country":"236"}},{"model":"country.state","fields":{"state_name":"Virginia","state_code":"VA","country":"236"}},{"model":"country.state","fields":{"state_name":"Washington","state_code":"WA","country":"236"}},{"model":"country.state","fields":{"state_name":"West Virginia","state_code":"WV","country":"236"}},{"model":"country.state","fields":{"state_name":"Wisconsin","state_code":"WI","country":"236"}},{"model":"country.state","fields":{"state_name":"Wyoming","state_code":"WY","country":"236"}}]
+[
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Australian Capital Territory",
+            "state_code": "ACT",
+            "country": "14"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "New South Wales",
+            "state_code": "NSW",
+            "country": "14"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Northern Territory",
+            "state_code": "NT",
+            "country": "14"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Queensland",
+            "state_code": "QLD",
+            "country": "14"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "South Australia",
+            "state_code": "SA",
+            "country": "14"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Tasmania",
+            "state_code": "TAS",
+            "country": "14"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Victoria",
+            "state_code": "VIC",
+            "country": "14"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Western Australia",
+            "state_code": "WA",
+            "country": "14"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Alberta",
+            "state_code": "AB",
+            "country": "40"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "British Columbia",
+            "state_code": "BC",
+            "country": "40"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Manitoba",
+            "state_code": "MB",
+            "country": "40"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "New Brunswick",
+            "state_code": "NB",
+            "country": "40"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Newfoundland",
+            "state_code": "NL",
+            "country": "40"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Northwest Territories",
+            "state_code": "NT",
+            "country": "40"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Nova Scotia",
+            "state_code": "NS",
+            "country": "40"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Nunavut",
+            "state_code": "NU",
+            "country": "40"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Ontario",
+            "state_code": "ON",
+            "country": "40"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Prince Edward Island",
+            "state_code": "PE",
+            "country": "40"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Quebec",
+            "state_code": "QC",
+            "country": "40"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Saskatchewan",
+            "state_code": "SK",
+            "country": "40"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Yukon Territory",
+            "state_code": "YT",
+            "country": "40"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Alabama",
+            "state_code": "AL",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Alaska",
+            "state_code": "AK",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Arizona",
+            "state_code": "AZ",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Arkansas",
+            "state_code": "AR",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "California",
+            "state_code": "CA",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "North Carolina",
+            "state_code": "NC",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Connecticut",
+            "state_code": "CT",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Delaware",
+            "state_code": "DE",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "District of Columbia",
+            "state_code": "DC",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Florida",
+            "state_code": "FL",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Georgia",
+            "state_code": "GA",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Hawaii",
+            "state_code": "HI",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Idaho",
+            "state_code": "ID",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Illinois",
+            "state_code": "IL",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Indiana",
+            "state_code": "IN",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Iowa",
+            "state_code": "IA",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Kansas",
+            "state_code": "KS",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Kentucky",
+            "state_code": "KY",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Louisiana",
+            "state_code": "LA",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Maine",
+            "state_code": "ME",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Maryland",
+            "state_code": "MD",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Massachusetts",
+            "state_code": "MA",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Michigan",
+            "state_code": "MI",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Minnesota",
+            "state_code": "MN",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Mississippi",
+            "state_code": "MS",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Missouri",
+            "state_code": "MO",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Montana",
+            "state_code": "MT",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Nebraska",
+            "state_code": "NE",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Nevada",
+            "state_code": "NV",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "New Hampshire",
+            "state_code": "NH",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "New Jersey",
+            "state_code": "NJ",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "New Mexico",
+            "state_code": "NM",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "New York",
+            "state_code": "NY",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "North Dakota",
+            "state_code": "ND",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Ohio",
+            "state_code": "OH",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Oklahoma",
+            "state_code": "OK",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Oregon",
+            "state_code": "OR",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Pennsylvania",
+            "state_code": "PA",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Rhode Island",
+            "state_code": "RI",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "South Carolina",
+            "state_code": "SC",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "South Dakota",
+            "state_code": "SD",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Tennessee",
+            "state_code": "TN",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Texas",
+            "state_code": "TX",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Utah",
+            "state_code": "UT",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Vermont",
+            "state_code": "VT",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Virginia",
+            "state_code": "VA",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Washington",
+            "state_code": "WA",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "West Virginia",
+            "state_code": "WV",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Wisconsin",
+            "state_code": "WI",
+            "country": "236"
+        }
+    },
+    {
+        "model": "country.state",
+        "fields": {
+            "state_name": "Wyoming",
+            "state_code": "WY",
+            "country": "236"
+        }
+    }
+]
