@@ -38,6 +38,7 @@ router.register(r'devices', manufacturer.DeviceRegistrationViewSet, base_name='d
 router.register(r'firmwares', manufacturer.FirmwareViewSet, base_name="firmwares")
 router.register(r'account/devices', manufacturer.AccountDeviceViewSet, base_name='account_devices')
 router.register(r'dealer', account.DealersViewSet, base_name='dealer')
+router.register(r'onfarm', account.OnFarmViewSet, base_name='onfarm')
 
 
 urlpatterns = [

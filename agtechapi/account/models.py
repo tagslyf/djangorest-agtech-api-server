@@ -47,6 +47,11 @@ LOCALIZATION_OPTIONS = (
     ('en_ZA', 'English / Zimbabwe'),
 )
 
+ONFARM_ACCESS = (
+    ('full', 'Full Access'),
+    ('limited', 'Limited Access')
+)
+
 class Profile(models.Model):
     id                  = models.AutoField(primary_key=True)
     user                = models.OneToOneField(User,related_name="profile", help_text="User who owned the account.")
@@ -75,4 +80,15 @@ class Profile(models.Model):
     created_by              = models.ForeignKey(User,related_name="account_created", help_text="User who created the account", null=True, blank=True)
     date_created            = models.DateTimeField(auto_now=False, auto_now_add=True, help_text="Date the record was created")
     date_last_edited        = models.DateTimeField(auto_now=True, auto_now_add=False, null=True, blank=True, help_text="Date the record was last edited.")
+
+class OnFarm(models.Model):
+    id                 = models.AutoField(primary_key=True)
+    customer           = models.ForeignKey(User,related_name="onfarm_user", help_text="Customer of that owns the user.")
+    firstname          = models.CharField(max_length=30, help_text="First name of the onfarm user.")
+    lastname           = models.CharField(max_length=30, help_text="Last name of the onfarm user.")
+    email              = models.EmailField(max_length=100,  unique=True, help_text="Primay email address of the onfarm user.")
+    access             = models.CharField(max_length=10, db_index=True, default="en_IE", choices=ONFARM_ACCESS, help_text="User access to Onfarm.")
+    access_instruction = models.TextField(null=True, blank=True)
+    date_created       = models.DateTimeField(auto_now=False, auto_now_add=True, help_text="Date the record was created")
+    date_last_edited   = models.DateTimeField(auto_now=True, auto_now_add=False, null=True, blank=True, help_text="Date the record was last edited.")
 

@@ -124,10 +124,20 @@ class UserViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.Lis
 
 class DealersViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet):
     """
-    List all customers, or create a new customer.
+    List all dealers.
     """
 
     model = User
     permission_classes = [IsAuthenticated, IsAdminUser,]
     serializer_class   = DealersSerializer
-    queryset = User.objects.filter(groups__name="Dealer")
+    queryset           = User.objects.filter(groups__name="Dealer")
+
+class OnFarmViewSet(mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet):
+    """
+    List of all customer accounts onfarm, create and update.
+    """
+    model               = OnFarm
+    permission_classes  = [IsAuthenticated, IsAdminUser,]
+    serializer_class    = OnFarmSerializer
+    queryset            = OnFarm.objects.all()
+

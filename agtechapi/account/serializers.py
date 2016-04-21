@@ -54,13 +54,33 @@ class ProfileSerializer(serializers.ModelSerializer):
 
         return data
 
+class OnFarmSerializer(serializers.ModelSerializer):
+    customer     = serializers.PrimaryKeyRelatedField(required=True,queryset=User.objects.filter(groups__name="Customer"))
+    firstname    = serializers.CharField(max_length=30, help_text="First name for the user account")
+    lastname     = serializers.CharField(max_length=30, help_text="Last name for user account.")
+    email        = serializers.EmailField(max_length=100,help_text="Email for user account.")
+    
+    class Meta:
+        model = OnFarm
+        fields = ('customer','firstname','lastname','email','access','access_instruction')
+
+    # Validation if email already exist
+    def validate_email(self, value):
+        request = self.context['request']
+        if request.method == 'POST':
+            duplicate = OnFarm.objects.filter(email=value)
+            if(duplicate.count() != 0):
+                raise serializers.ValidationError("Email already exist. Please try different email.")
+        return value
+
 class CustomerSerializer(serializers.ModelSerializer):
-    groups   = serializers.PrimaryKeyRelatedField(required=False,many=True,queryset=Group.objects.filter(name="Customer"),default=Group.objects.filter(name="Customer"))
-    profile  = ProfileSerializer(required=False)
-        
+    groups      = serializers.PrimaryKeyRelatedField(required=False,many=True,queryset=Group.objects.filter(name="Customer"),default=Group.objects.filter(name="Customer"))
+    profile     = ProfileSerializer(required=False)
+    onfarm_user = OnFarmSerializer(read_only=True,many=True)
+
     class Meta:
         model  = User
-        fields = ('username','groups','profile')
+        fields = ('username','groups','profile','onfarm_user')
 
 
     def create(self, validated_data):
