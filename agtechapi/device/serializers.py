@@ -17,6 +17,7 @@ class ManufactureDeviceSerializer(serializers.ModelSerializer):
 	class Meta:
 		model  = Manufacture
 		fields = ('id','firmware','device_sn','device_type','pcba_srl','banner_srl','nimberlink_srl','enclosure_srl','radio_srl','qa_test_number','manufactured_status','manufactured_by','date_created','date_last_edited')
+	
 	def create(self, validated_data):
 		validated_data['device_sn'] = uuid.uuid4()
 		return Manufacture.objects.create(**validated_data)
@@ -24,7 +25,17 @@ class ManufactureDeviceSerializer(serializers.ModelSerializer):
 
 class DeviceRegistrationSerializer(serializers.ModelSerializer):
 	account    = serializers.PrimaryKeyRelatedField(required=True,queryset=User.objects.filter(groups__name="Customer"))
-	device_sn  = serializers.PrimaryKeyRelatedField(required=True,queryset=Manufacture.objects.exclude(device_sn__in=Registration.objects.filter(status='A').values_list('device_sn', flat=True)))
+	#device_sn  = serializers.PrimaryKeyRelatedField(required=True,queryset=Manufacture.objects.exclude(device_sn__in=Registration.objects.filter(status='A').values_list('device_sn', flat=True)))
+	device_sn  = serializers.PrimaryKeyRelatedField(required=True,queryset=Manufacture.objects.all())
+
+	def validate_device_sn(self, device_sn):
+		request = self.context['request']
+
+		if request.method == 'POST':
+			duplicate = Registration.objects.filter(device_sn=device_sn)
+			if(duplicate.count() != 0):
+				raise serializers.ValidationError("Device have been already assigned.")
+		return device_sn
 
 	class Meta:
 		model  = Registration
