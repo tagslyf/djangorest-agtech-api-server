@@ -23,12 +23,15 @@ class GroupSerializer(serializers.ModelSerializer):
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-    account_name = serializers.CharField(required=False,max_length=50, help_text="Display name for the account")
-    firstname    = serializers.CharField(max_length=30, help_text="First name for billing statement.")
-    lastname     = serializers.CharField(max_length=30, help_text="Last name for billing statement.")
-    email        = serializers.EmailField(max_length=100, help_text="Email for billing statement.")
-    country      = serializers.CharField(max_length=3, default="USA", help_text="Country for billing address.")
-    user         = serializers.PrimaryKeyRelatedField(required=False,queryset=User.objects.all())
+    account_name  = serializers.CharField(required=False,max_length=50, help_text="Display name for the account")
+    reseller_name = serializers.CharField(required=False,max_length=50, default="",help_text="Display name for the account")
+    firstname     = serializers.CharField(max_length=30, help_text="First name for billing statement.")
+    lastname      = serializers.CharField(max_length=30, help_text="Last name for billing statement.")
+    email         = serializers.EmailField(max_length=100, help_text="Email for billing statement.")
+    country       = serializers.CharField(max_length=3, default="USA", help_text="Country for billing address.")
+    user          = serializers.PrimaryKeyRelatedField(required=False,queryset=User.objects.all())
+    email_onboarding = serializers.EmailField(max_length=100, default="",help_text="Email for billing statement.")
+    billing_invoice_email = serializers.EmailField(max_length=100, default="",help_text="Billing invoice for billing statement.")
 
     class Meta:
         model  = Profile
@@ -152,14 +155,16 @@ class AuthSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     email        = serializers.EmailField(required=True)
+    profile      = ProfileSerializer(required=False)
 
     class Meta:
         model = User
-        exclude = ('is_superuser','user_permissions','last_login','date_joined')
+        exclude = ('is_superuser','user_permissions','last_login','date_joined',)
         extra_kwargs = {'password': {'write_only': True , 'required': False}}
 
     def create(self, validated_data):
-        groups = validated_data.pop('groups');
+        groups       = validated_data.pop('groups');
+        profile_data = validated_data.pop('profile', False);
         
         user = User.objects.create(**validated_data)
         user.set_password(validated_data['password'])
@@ -168,6 +173,9 @@ class UserSerializer(serializers.ModelSerializer):
         if groups:
             for g in groups:
                 user.groups.add(g)
+
+        if profile_data:
+            Profile.objects.create(user=user,**profile_data)
 
         return user
 
